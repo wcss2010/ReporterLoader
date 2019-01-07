@@ -27,30 +27,42 @@ namespace ReporterLoaders
                 System.Console.WriteLine(kvp.Key + "," + kvp.Value);
             }
 
+            System.Console.WriteLine("-------------------------");
+
             foreach (SchoolInfo sli in bi.SchoolInfoList)
             {
                 System.Console.WriteLine(sli.StartDate + "," + sli.EndDate + "," + sli.SchoolName + "," + sli.Subject + "," + sli.License);
             }
+
+            System.Console.WriteLine("-------------------------");
 
             foreach (ResumeInfo sli in bi.ResumeInfoList)
             {
                 System.Console.WriteLine(sli.StartDate + "," + sli.EndDate + "," + sli.WorkUnitAndJob);
             }
 
+            System.Console.WriteLine("-------------------------");
+
             foreach (ProjectInfo sli in bi.ProjectInfoList)
             {
                 System.Console.WriteLine(sli.Date + "," + sli.Name + "," + sli.Source + "," + sli.Job);
             }
+
+            System.Console.WriteLine("-------------------------");
 
             foreach (PartTimeInfo sli in bi.PartTimeInfoList)
             {
                 System.Console.WriteLine(sli.StartDate + "," + sli.EndDate + "," + sli.PartTimeContent + "," + sli.Job);
             }
 
+            System.Console.WriteLine("-------------------------");
+
             foreach (HonorInfo sli in bi.HonorInfoList)
             {
                 System.Console.WriteLine(sli.Date + "," + sli.Name + "," + sli.Level + "," + sli.Order);
             }
+
+            System.Console.WriteLine("-------------------------");
 
             foreach (ProductionInfo sli in bi.ProductionInfoList)
             {
