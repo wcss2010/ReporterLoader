@@ -66,6 +66,7 @@
             // 
             // plMain
             // 
+            this.plMain.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.plMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plMain.Location = new System.Drawing.Point(0, 59);
             this.plMain.Name = "plMain";
