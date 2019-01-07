@@ -26,6 +26,11 @@ namespace ReporterLoaders
             {
                 System.Console.WriteLine(kvp.Key + "," + kvp.Value);
             }
+
+            foreach (SchoolInfo sli in bi.SchoolInfoList)
+            {
+                System.Console.WriteLine(sli.StartDate + "," + sli.EndDate + "," + sli.SchoolName + "," + sli.Subject + "," + sli.License);
+            }
         }
     }
 }

@@ -45,6 +45,11 @@ namespace ReporterLoaders.DB.DocEntitys
         /// </summary>
         public List<ProductionInfo> ProductionInfoList = new List<ProductionInfo>();
 
+        /// <summary>
+        /// 获取简历信息
+        /// </summary>
+        /// <param name="wordFiles"></param>
+        /// <returns></returns>
         public static PersonInfo GetPersonInfoObj(string wordFiles)
         {
             PersonInfo pi = new PersonInfo();
@@ -179,10 +184,25 @@ namespace ReporterLoaders.DB.DocEntitys
     /// </summary>
     public class SchoolInfo
     {
+        /// <summary>
+        /// 起始时间
+        /// </summary>
         public string StartDate { get; set; }
+        /// <summary>
+        /// 终止时间
+        /// </summary>
         public string EndDate { get; set; }
+        /// <summary>
+        /// 教育或培训单位
+        /// </summary>
         public string SchoolName { get; set; }
+        /// <summary>
+        /// 学习专业
+        /// </summary>
         public string Subject { get; set; }
+        /// <summary>
+        /// 学历
+        /// </summary>
         public string License { get; set; }
     }
 
@@ -191,8 +211,17 @@ namespace ReporterLoaders.DB.DocEntitys
     /// </summary>
     public class ResumeInfo
     {
+        /// <summary>
+        /// 起始时间
+        /// </summary>
         public string StartDate { get; set; }
+        /// <summary>
+        /// 终止时间
+        /// </summary>
         public string EndDate { get; set; }
+        /// <summary>
+        /// 在何单位、任何职务
+        /// </summary>
         public string WorkUnitAndJob { get; set; }
     }
 
@@ -201,9 +230,21 @@ namespace ReporterLoaders.DB.DocEntitys
     /// </summary>
     public class ProjectInfo
     {
+        /// <summary>
+        /// 起止时间
+        /// </summary>
         public string Date { get; set; }
+        /// <summary>
+        /// 项目名称
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// 项目来源
+        /// </summary>
         public string Source { get; set; }
+        /// <summary>
+        /// 主要贡献
+        /// </summary>
         public string Job { get; set; }
     }
 
@@ -212,9 +253,21 @@ namespace ReporterLoaders.DB.DocEntitys
     /// </summary>
     public class PartTimeInfo
     {
+        /// <summary>
+        /// 起始时间
+        /// </summary>
         public string StartDate { get; set; }
+        /// <summary>
+        /// 终止时间
+        /// </summary>
         public string EndDate { get; set; }
+        /// <summary>
+        /// 兼职情况
+        /// </summary>
         public string PartTimeContent { get; set; }
+        /// <summary>
+        /// 职务
+        /// </summary>
         public string Job { get; set; }
     }
 
@@ -223,9 +276,21 @@ namespace ReporterLoaders.DB.DocEntitys
     /// </summary>
     public class HonorInfo
     {
+        /// <summary>
+        /// 时间
+        /// </summary>
         public string Date { get; set; }
+        /// <summary>
+        /// 项目（课题）名称或荣誉名称
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// 种类及等级
+        /// </summary>
         public string Level { get; set; }
+        /// <summary>
+        /// 排名
+        /// </summary>
         public string Order { get; set; }
     }
 
@@ -234,12 +299,21 @@ namespace ReporterLoaders.DB.DocEntitys
     /// </summary>
     public class ProductionInfo
     {
+        /// <summary>
+        /// 时间
+        /// </summary>
         public string Date { get; set; }
-
+        /// <summary>
+        /// 著作/专利名称
+        /// </summary>
         public string Name { get; set; }
-
+        /// <summary>
+        /// 著作出版社/专利号
+        /// </summary>
         public string PrinterAndLicenseNo { get; set; }
-
+        /// <summary>
+        /// 排名
+        /// </summary>
         public string Order { get; set; }
     }
 }
