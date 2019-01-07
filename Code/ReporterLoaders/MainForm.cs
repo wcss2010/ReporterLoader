@@ -20,7 +20,7 @@ namespace ReporterLoaders
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            PersonInfo bi = PersonInfo.GetPersonInfoObj(@"C:\Users\wcss\Desktop\ReporterLoader\Docs\xx2.doc");
+            PersonInfo bi = PersonInfo.GetPersonInfoObj(@"C:\Users\wcss\Desktop\ReporterLoader\Docs\xx3.doc");
 
             foreach (KeyValuePair<string, string> kvp in bi.BaseInfoDict)
             {
