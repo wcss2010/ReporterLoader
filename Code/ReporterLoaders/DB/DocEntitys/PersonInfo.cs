@@ -40,6 +40,11 @@ namespace ReporterLoaders.DB.DocEntitys
         /// </summary>
         public List<HonorInfo> HonorInfoList = new List<HonorInfo>();
 
+        /// <summary>
+        /// 主要著作和专利情况
+        /// </summary>
+        public List<ProductionInfo> ProductionInfoList = new List<ProductionInfo>();
+
         public static PersonInfo GetPersonInfoObj(string wordFiles)
         {
             PersonInfo pi = new PersonInfo();
@@ -154,10 +159,13 @@ namespace ReporterLoaders.DB.DocEntitys
                 Table t7 = (Table)doc.GetChild(NodeType.Table, 6, true);
                 foreach (Row r in t2.Rows)
                 {
-                    foreach (Cell c in r.Cells)
-                    {
+                    ProductionInfo nii = new ProductionInfo();
+                    nii.Date = r.Cells[0].GetText();
+                    nii.Name = r.Cells[1].GetText();
+                    nii.PrinterAndLicenseNo = r.Cells[2].GetText();
+                    nii.Order = r.Cells[3].GetText();
 
-                    }
+                    pi.ProductionInfoList.Add(nii);
                 }
                 #endregion
             }
@@ -218,6 +226,20 @@ namespace ReporterLoaders.DB.DocEntitys
         public string Date { get; set; }
         public string Name { get; set; }
         public string Level { get; set; }
+        public string Order { get; set; }
+    }
+
+    /// <summary>
+    /// 主要著作和专利情况
+    /// </summary>
+    public class ProductionInfo
+    {
+        public string Date { get; set; }
+
+        public string Name { get; set; }
+
+        public string PrinterAndLicenseNo { get; set; }
+
         public string Order { get; set; }
     }
 }
