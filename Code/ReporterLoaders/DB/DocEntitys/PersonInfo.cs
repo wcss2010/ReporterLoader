@@ -91,8 +91,8 @@ namespace ReporterLoaders.DB.DocEntitys
                 #endregion
 
                 #region 受教育情况
-                Table t2 = (Table)doc.GetChild(NodeType.Table, 1, true);
-                foreach (Row r in t2.Rows)
+                Table tt2 = (Table)doc.GetChild(NodeType.Table, 1, true);
+                foreach (Row r in tt2.Rows)
                 {
                     if (string.IsNullOrEmpty(r.Cells[0].GetText()) || r.Cells[0].GetText().Contains("时间"))
                     {
@@ -111,8 +111,8 @@ namespace ReporterLoaders.DB.DocEntitys
                 #endregion
 
                 #region 主要工作简历
-                Table t3 = (Table)doc.GetChild(NodeType.Table, 2, true);
-                foreach (Row r in t2.Rows)
+                Table tt3 = (Table)doc.GetChild(NodeType.Table, 2, true);
+                foreach (Row r in tt3.Rows)
                 {
                     if (string.IsNullOrEmpty(r.Cells[0].GetText()) || r.Cells[0].GetText().Contains("时间"))
                     {
@@ -129,8 +129,8 @@ namespace ReporterLoaders.DB.DocEntitys
                 #endregion
 
                 #region 主要科研成绩
-                Table t4 = (Table)doc.GetChild(NodeType.Table, 3, true);
-                foreach (Row r in t2.Rows)
+                Table tt4 = (Table)doc.GetChild(NodeType.Table, 3, true);
+                foreach (Row r in tt4.Rows)
                 {
                     if (string.IsNullOrEmpty(r.Cells[0].GetText()) || r.Cells[0].GetText().Contains("时间"))
                     {
@@ -148,8 +148,8 @@ namespace ReporterLoaders.DB.DocEntitys
                 #endregion
 
                 #region 兼职情况
-                Table t5 = (Table)doc.GetChild(NodeType.Table, 4, true);
-                foreach (Row r in t2.Rows)
+                Table tt5 = (Table)doc.GetChild(NodeType.Table, 4, true);
+                foreach (Row r in tt5.Rows)
                 {
                     if (string.IsNullOrEmpty(r.Cells[0].GetText()) || r.Cells[0].GetText().Contains("时间"))
                     {
@@ -167,8 +167,8 @@ namespace ReporterLoaders.DB.DocEntitys
                 #endregion
 
                 #region 科技获奖和荣誉情况
-                Table t6 = (Table)doc.GetChild(NodeType.Table, 5, true);
-                foreach (Row r in t2.Rows)
+                Table tt6 = (Table)doc.GetChild(NodeType.Table, 5, true);
+                foreach (Row r in tt6.Rows)
                 {
                     if (string.IsNullOrEmpty(r.Cells[0].GetText()) || r.Cells[0].GetText().Contains("时间"))
                     {
@@ -186,8 +186,8 @@ namespace ReporterLoaders.DB.DocEntitys
                 #endregion
 
                 #region 主要著作和专利情况
-                Table t7 = (Table)doc.GetChild(NodeType.Table, 6, true);
-                foreach (Row r in t2.Rows)
+                Table tt7 = (Table)doc.GetChild(NodeType.Table, 6, true);
+                foreach (Row r in tt7.Rows)
                 {
                     if (string.IsNullOrEmpty(r.Cells[0].GetText()) || r.Cells[0].GetText().Contains("时间"))
                     {
