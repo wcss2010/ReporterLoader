@@ -20,36 +20,7 @@ namespace ReporterLoaders
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            Document doc = new Document(@"C:\Users\wcss\Desktop\ReporterLoader\Docs\XX2.doc");
-            Table t = (Table)doc.GetChild(NodeType.Table, 0, true);
-            PersonInfo bi = new PersonInfo();
-            string sKey,sValue;
-            sKey = string.Empty;
-            sValue = string.Empty;
-            foreach (Row r in t.Rows)
-            {
-                foreach (Cell c in r.Cells)
-                {
-                    string s = c.GetText().Trim().Replace("\a", string.Empty).Replace("\0", string.Empty).Replace("\n", string.Empty).Replace("\r", string.Empty);
-                    if (string.IsNullOrEmpty(sKey))
-                    {
-                        if (string.IsNullOrEmpty(s))
-                        {
-                            continue;
-                        }
-
-                        sKey = s;
-                    }
-                    else if (string.IsNullOrEmpty(sValue))
-                    {
-                        sValue = s;
-
-                        bi.BaseInfoDict.Add(sKey, sValue);
-                        sKey = string.Empty;
-                        sValue = string.Empty;
-                    }
-                }
-            }
+            PersonInfo bi = PersonInfo.GetPersonInfoObj(@"C:\Users\wcss\Desktop\ReporterLoader\Docs\xx3.doc");
 
             foreach (KeyValuePair<string, string> kvp in bi.BaseInfoDict)
             {
