@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using Aspose.Words;
+using Aspose.Words.Drawing;
 using Aspose.Words.Tables;
 
 namespace ReporterLoaders.DB.DocEntitys
@@ -46,6 +48,11 @@ namespace ReporterLoaders.DB.DocEntitys
         public List<ProductionInfo> ProductionInfoList = new List<ProductionInfo>();
 
         /// <summary>
+        /// 头像
+        /// </summary>
+        public Image HeadImage { get; set; }
+
+        /// <summary>
         /// 获取简历信息
         /// </summary>
         /// <param name="wordFiles"></param>
@@ -57,6 +64,24 @@ namespace ReporterLoaders.DB.DocEntitys
             if (File.Exists(wordFiles))
             {
                 Document doc = new Document(wordFiles);
+
+                #region 头像
+                MemoryStream ms = new MemoryStream();
+                try
+                {
+                    Shape imgShape = (Shape)doc.GetChild(NodeType.Shape, 0, true);
+                    if (imgShape != null)
+                    {
+                        imgShape.ImageData.Save(ms);
+                        ms.Position = 0;
+                        pi.HeadImage = Image.FromStream(ms);
+                    }
+                }
+                finally
+                {
+                    ms.Dispose();
+                }
+                #endregion
 
                 #region 提取基础信息
                 Table t = (Table)doc.GetChild(NodeType.Table, 0, true);

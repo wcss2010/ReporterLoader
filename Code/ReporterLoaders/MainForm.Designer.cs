@@ -32,10 +32,13 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.plMain = new System.Windows.Forms.Panel();
             this.btnOpen = new System.Windows.Forms.ToolStripButton();
+            this.plMain = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.plMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -64,15 +67,6 @@
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // plMain
-            // 
-            this.plMain.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.plMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.plMain.Location = new System.Drawing.Point(0, 59);
-            this.plMain.Name = "plMain";
-            this.plMain.Size = new System.Drawing.Size(1080, 473);
-            this.plMain.TabIndex = 2;
-            // 
             // btnOpen
             // 
             this.btnOpen.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -84,6 +78,25 @@
             this.btnOpen.Text = "Test";
             this.btnOpen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
+            // 
+            // plMain
+            // 
+            this.plMain.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.plMain.Controls.Add(this.pictureBox1);
+            this.plMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plMain.Location = new System.Drawing.Point(0, 59);
+            this.plMain.Name = "plMain";
+            this.plMain.Size = new System.Drawing.Size(1080, 473);
+            this.plMain.TabIndex = 2;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(277, 83);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(313, 164);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // MainForm
             // 
@@ -100,6 +113,8 @@
             this.statusStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.plMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,6 +127,7 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Panel plMain;
         private System.Windows.Forms.ToolStripButton btnOpen;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

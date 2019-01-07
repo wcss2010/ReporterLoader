@@ -68,6 +68,8 @@ namespace ReporterLoaders
             {
                 System.Console.WriteLine(sli.Date + "," + sli.Name + "," + sli.PrinterAndLicenseNo + "," + sli.Order);
             }
+
+            pictureBox1.Image = bi.HeadImage;
         }
     }
 }
