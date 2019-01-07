@@ -94,6 +94,11 @@ namespace ReporterLoaders.DB.DocEntitys
                 Table t2 = (Table)doc.GetChild(NodeType.Table, 1, true);
                 foreach (Row r in t2.Rows)
                 {
+                    if (string.IsNullOrEmpty(r.Cells[0].GetText()) || r.Cells[0].GetText().Contains("时间"))
+                    {
+                        continue;
+                    }
+
                     SchoolInfo sii = new SchoolInfo();
                     sii.StartDate = r.Cells[0].GetText();
                     sii.EndDate = r.Cells[1].GetText();
@@ -109,6 +114,11 @@ namespace ReporterLoaders.DB.DocEntitys
                 Table t3 = (Table)doc.GetChild(NodeType.Table, 2, true);
                 foreach (Row r in t2.Rows)
                 {
+                    if (string.IsNullOrEmpty(r.Cells[0].GetText()) || r.Cells[0].GetText().Contains("时间"))
+                    {
+                        continue;
+                    }
+
                     ResumeInfo wui = new ResumeInfo();
                     wui.StartDate = r.Cells[0].GetText();
                     wui.EndDate = r.Cells[1].GetText();
@@ -122,6 +132,11 @@ namespace ReporterLoaders.DB.DocEntitys
                 Table t4 = (Table)doc.GetChild(NodeType.Table, 3, true);
                 foreach (Row r in t2.Rows)
                 {
+                    if (string.IsNullOrEmpty(r.Cells[0].GetText()) || r.Cells[0].GetText().Contains("时间"))
+                    {
+                        continue;
+                    }
+
                     ProjectInfo ti = new ProjectInfo();
                     ti.Date = r.Cells[0].GetText();
                     ti.Name = r.Cells[1].GetText();
@@ -136,6 +151,11 @@ namespace ReporterLoaders.DB.DocEntitys
                 Table t5 = (Table)doc.GetChild(NodeType.Table, 4, true);
                 foreach (Row r in t2.Rows)
                 {
+                    if (string.IsNullOrEmpty(r.Cells[0].GetText()) || r.Cells[0].GetText().Contains("时间"))
+                    {
+                        continue;
+                    }
+
                     PartTimeInfo pti = new PartTimeInfo();
                     pti.StartDate = r.Cells[0].GetText();
                     pti.EndDate = r.Cells[1].GetText();
@@ -150,6 +170,11 @@ namespace ReporterLoaders.DB.DocEntitys
                 Table t6 = (Table)doc.GetChild(NodeType.Table, 5, true);
                 foreach (Row r in t2.Rows)
                 {
+                    if (string.IsNullOrEmpty(r.Cells[0].GetText()) || r.Cells[0].GetText().Contains("时间"))
+                    {
+                        continue;
+                    }
+
                     HonorInfo hii = new HonorInfo();
                     hii.Date = r.Cells[0].GetText();
                     hii.Name = r.Cells[1].GetText();
@@ -164,6 +189,11 @@ namespace ReporterLoaders.DB.DocEntitys
                 Table t7 = (Table)doc.GetChild(NodeType.Table, 6, true);
                 foreach (Row r in t2.Rows)
                 {
+                    if (string.IsNullOrEmpty(r.Cells[0].GetText()) || r.Cells[0].GetText().Contains("时间"))
+                    {
+                        continue;
+                    }
+
                     ProductionInfo nii = new ProductionInfo();
                     nii.Date = r.Cells[0].GetText();
                     nii.Name = r.Cells[1].GetText();
