@@ -13,6 +13,8 @@ namespace ReporterLoaders
 {
     public partial class MainForm : Form
     {
+        protected List<PersonInfo> PersonInfoList = new List<PersonInfo>();
+
         public MainForm()
         {
             InitializeComponent();
@@ -20,56 +22,73 @@ namespace ReporterLoaders
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            PersonInfo bi = PersonInfo.GetPersonInfoObj(@"C:\Users\wcss\Desktop\ReporterLoader\Docs\xx3.doc");
-
-            foreach (KeyValuePair<string, string> kvp in bi.BaseInfoDict)
+            if (ofdWords.ShowDialog() == DialogResult.OK)
             {
-                System.Console.WriteLine(kvp.Key + "," + kvp.Value);
+                try
+                {
+                    PersonInfo bi = PersonInfo.GetPersonInfoObj(ofdWords.FileName);
+
+                    if (bi.BaseInfoDict.Count == 0 || bi.SchoolInfoList.Count == 0)
+                    {
+                        return;
+                    }
+
+                    PersonInfoList.Add(bi);
+                    UpdatePersonInfoList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("载入失败！Ex:" + ex.ToString());
+                }
             }
+        }
 
-            System.Console.WriteLine("-------------------------");
-
-            foreach (SchoolInfo sli in bi.SchoolInfoList)
+        protected void UpdatePersonInfoList()
+        {
+            dgvDetail.Rows.Clear();
+            foreach (PersonInfo pi in PersonInfoList)
             {
-                System.Console.WriteLine(sli.StartDate + "," + sli.EndDate + "," + sli.SchoolName + "," + sli.Subject + "," + sli.License);
+                Image curImg = new Bitmap(110, 128);
+                Graphics g = Graphics.FromImage(curImg);
+                try
+                {
+                    g.DrawImage(pi.HeadImage, new Rectangle(0, 0, curImg.Width, curImg.Height));
+                }
+                finally
+                {
+                    g.Dispose();
+                }
+
+                List<object> cells = new List<object>();
+                cells.Add(curImg);
+                cells.Add(pi.BaseInfoDict["姓    名"]);
+                cells.Add(pi.BaseInfoDict["性    别"]);
+                cells.Add(pi.BaseInfoDict["民    族"]);
+                cells.Add(pi.BaseInfoDict["政治面貌"]);
+                cells.Add(pi.BaseInfoDict["本科专业"]);
+                cells.Add(pi.BaseInfoDict["最高学位"]);
+                cells.Add(pi.BaseInfoDict["所在省市"]);
+                cells.Add(pi.BaseInfoDict["工作单位"]);
+                cells.Add(pi.BaseInfoDict["所属部门"]);
+                cells.Add(pi.BaseInfoDict["行政职务"]);
+                cells.Add(pi.BaseInfoDict["涉密程度"]);
+                cells.Add(pi.BaseInfoDict["单位电话"]);
+
+                int rowIndex = dgvDetail.Rows.Add(cells.ToArray());
+                dgvDetail.Rows[rowIndex].Tag = pi;
             }
+        }
 
-            System.Console.WriteLine("-------------------------");
-
-            foreach (ResumeInfo sli in bi.ResumeInfoList)
+        private void dgvDetail_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvDetail.Columns.Count - 1)
             {
-                System.Console.WriteLine(sli.StartDate + "," + sli.EndDate + "," + sli.WorkUnitAndJob);
+                if (MessageBox.Show("真的要删除吗？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    PersonInfoList.Remove((PersonInfo)dgvDetail.Rows[e.RowIndex].Tag);
+                    UpdatePersonInfoList();
+                }
             }
-
-            System.Console.WriteLine("-------------------------");
-
-            foreach (ProjectInfo sli in bi.ProjectInfoList)
-            {
-                System.Console.WriteLine(sli.Date + "," + sli.Name + "," + sli.Source + "," + sli.Job);
-            }
-
-            System.Console.WriteLine("-------------------------");
-
-            foreach (PartTimeInfo sli in bi.PartTimeInfoList)
-            {
-                System.Console.WriteLine(sli.StartDate + "," + sli.EndDate + "," + sli.PartTimeContent + "," + sli.Job);
-            }
-
-            System.Console.WriteLine("-------------------------");
-
-            foreach (HonorInfo sli in bi.HonorInfoList)
-            {
-                System.Console.WriteLine(sli.Date + "," + sli.Name + "," + sli.Level + "," + sli.Order);
-            }
-
-            System.Console.WriteLine("-------------------------");
-
-            foreach (ProductionInfo sli in bi.ProductionInfoList)
-            {
-                System.Console.WriteLine(sli.Date + "," + sli.Name + "," + sli.PrinterAndLicenseNo + "," + sli.Order);
-            }
-
-            pictureBox1.Image = bi.HeadImage;
         }
     }
 }
