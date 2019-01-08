@@ -121,7 +121,11 @@ namespace ReporterLoaders
                     sheet.Cells[rowIndex, 0].PutValue("受教育情况");
                     foreach (SchoolInfo shi in pi.SchoolInfoList)
                     {
-
+                        sheet.Cells[rowIndex, 0].PutValue(shi.StartDate);
+                        sheet.Cells[rowIndex, 1].PutValue(shi.EndDate);
+                        sheet.Cells[rowIndex, 2].PutValue(shi.SchoolName);
+                        sheet.Cells[rowIndex, 3].PutValue(shi.Subject);
+                        sheet.Cells[rowIndex, 4].PutValue(shi.License);
 
                         rowIndex++;
                     }
@@ -131,7 +135,9 @@ namespace ReporterLoaders
                     sheet.Cells[rowIndex, 0].PutValue("主要工作简历");
                     foreach (ResumeInfo rei in pi.ResumeInfoList)
                     {
-
+                        sheet.Cells[rowIndex, 0].PutValue(rei.StartDate);
+                        sheet.Cells[rowIndex, 1].PutValue(rei.EndDate);
+                        sheet.Cells[rowIndex, 2].PutValue(rei.WorkUnitAndJob);
 
                         rowIndex++;
                     }
@@ -141,6 +147,10 @@ namespace ReporterLoaders
                     sheet.Cells[rowIndex, 0].PutValue("主要科研成绩");
                     foreach (ProjectInfo pti in pi.ProjectInfoList)
                     {
+                        sheet.Cells[rowIndex, 0].PutValue(pti.Date);
+                        sheet.Cells[rowIndex, 1].PutValue(pti.Name);
+                        sheet.Cells[rowIndex, 2].PutValue(pti.Source);
+                        sheet.Cells[rowIndex, 3].PutValue(pti.Job);
 
                         rowIndex++;
                     }
@@ -150,6 +160,10 @@ namespace ReporterLoaders
                     sheet.Cells[rowIndex, 0].PutValue("兼职情况（技术或学术）");
                     foreach (PartTimeInfo prti in pi.PartTimeInfoList)
                     {
+                        sheet.Cells[rowIndex, 0].PutValue(prti.StartDate);
+                        sheet.Cells[rowIndex, 1].PutValue(prti.EndDate);
+                        sheet.Cells[rowIndex, 2].PutValue(prti.PartTimeContent);
+                        sheet.Cells[rowIndex, 3].PutValue(prti.Job);
 
                         rowIndex++;
                     }
@@ -159,6 +173,10 @@ namespace ReporterLoaders
                     sheet.Cells[rowIndex, 0].PutValue("科技获奖和荣誉情况（省部级以上）");
                     foreach (HonorInfo hio in pi.HonorInfoList)
                     {
+                        sheet.Cells[rowIndex, 0].PutValue(hio.Date);
+                        sheet.Cells[rowIndex, 1].PutValue(hio.Name);
+                        sheet.Cells[rowIndex, 2].PutValue(hio.Level);
+                        sheet.Cells[rowIndex, 3].PutValue(hio.Order);
 
                         rowIndex++;
                     }
@@ -168,6 +186,10 @@ namespace ReporterLoaders
                     sheet.Cells[rowIndex, 0].PutValue("主要著作和专利情况");
                     foreach (ProductionInfo pui in pi.ProductionInfoList)
                     {
+                        sheet.Cells[rowIndex, 0].PutValue(pui.Date);
+                        sheet.Cells[rowIndex, 1].PutValue(pui.Name);
+                        sheet.Cells[rowIndex, 2].PutValue(pui.PrinterAndLicenseNo);
+                        sheet.Cells[rowIndex, 3].PutValue(pui.Order);
 
                         rowIndex++;
                     }
