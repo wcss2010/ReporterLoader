@@ -107,7 +107,7 @@ namespace ReporterLoaders
                     sheet.Name = pi.BaseInfoDict["姓    名"];
 
                     //基本信息
-                    sheet.Cells[0, 0].PutValue("基本信息：");
+                    sheet.Cells[0, 0].PutValue("基本信息");
                     int rowIndex = 1;
                     foreach (KeyValuePair<string, string> kvp in pi.BaseInfoDict)
                     {
@@ -117,20 +117,64 @@ namespace ReporterLoaders
                     }
 
                     //受教育情况
+                    rowIndex++;
+                    sheet.Cells[rowIndex, 0].PutValue("受教育情况");
+                    foreach (SchoolInfo shi in pi.SchoolInfoList)
+                    {
+
+
+                        rowIndex++;
+                    }
 
                     //主要工作简历
+                    rowIndex++;
+                    sheet.Cells[rowIndex, 0].PutValue("主要工作简历");
+                    foreach (ResumeInfo rei in pi.ResumeInfoList)
+                    {
+
+
+                        rowIndex++;
+                    }
 
                     //主要科研成绩
+                    rowIndex++;
+                    sheet.Cells[rowIndex, 0].PutValue("主要科研成绩");
+                    foreach (ProjectInfo pti in pi.ProjectInfoList)
+                    {
+
+                        rowIndex++;
+                    }
 
                     //兼职情况（技术或学术）
+                    rowIndex++;
+                    sheet.Cells[rowIndex, 0].PutValue("兼职情况（技术或学术）");
+                    foreach (PartTimeInfo prti in pi.PartTimeInfoList)
+                    {
+
+                        rowIndex++;
+                    }
 
                     //科技获奖和荣誉情况（省部级以上）
+                    rowIndex++;
+                    sheet.Cells[rowIndex, 0].PutValue("科技获奖和荣誉情况（省部级以上）");
+                    foreach (HonorInfo hio in pi.HonorInfoList)
+                    {
+
+                        rowIndex++;
+                    }
 
                     //主要著作和专利情况
+                    rowIndex++;
+                    sheet.Cells[rowIndex, 0].PutValue("主要著作和专利情况");
+                    foreach (ProductionInfo pui in pi.ProductionInfoList)
+                    {
+
+                        rowIndex++;
+                    }
 
                     sheet.AutoFitColumns(); //自适应宽
                 }
-                                
+                
                 book.Save(filepath); //保存
                 GC.Collect();
 
