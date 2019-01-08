@@ -122,6 +122,7 @@
             this.btnExportTo.Size = new System.Drawing.Size(89, 88);
             this.btnExportTo.Text = "导出到Excel";
             this.btnExportTo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExportTo.Click += new System.EventHandler(this.btnExportTo_Click);
             // 
             // toolStripButton2
             // 

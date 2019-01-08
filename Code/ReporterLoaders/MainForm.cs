@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using Aspose.Cells;
 using Aspose.Words;
 using Aspose.Words.Tables;
 using ReporterLoaders.DB.DocEntitys;
@@ -88,6 +90,55 @@ namespace ReporterLoaders
                     PersonInfoList.Remove((PersonInfo)dgvDetail.Rows[e.RowIndex].Tag);
                     UpdatePersonInfoList();
                 }
+            }
+        }
+
+        private void btnExportTo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Workbook book = new Workbook(); //创建工作簿
+                
+                string desktopDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                string filepath = Path.Combine(desktopDir, "output.xlsx");
+                foreach (PersonInfo pi in PersonInfoList)
+                {
+                    Worksheet sheet = book.Worksheets[book.Worksheets.Add(SheetType.Worksheet)];
+                    sheet.Name = pi.BaseInfoDict["姓    名"];
+
+                    //基本信息
+                    sheet.Cells[0, 0].PutValue("基本信息：");
+                    int rowIndex = 1;
+                    foreach (KeyValuePair<string, string> kvp in pi.BaseInfoDict)
+                    {
+                        sheet.Cells[rowIndex, 0].PutValue(kvp.Key);
+                        sheet.Cells[rowIndex, 1].PutValue(kvp.Value);
+                        rowIndex++;
+                    }
+
+                    //受教育情况
+
+                    //主要工作简历
+
+                    //主要科研成绩
+
+                    //兼职情况（技术或学术）
+
+                    //科技获奖和荣誉情况（省部级以上）
+
+                    //主要著作和专利情况
+
+                    sheet.AutoFitColumns(); //自适应宽
+                }
+                                
+                book.Save(filepath); //保存
+                GC.Collect();
+
+                MessageBox.Show(filepath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("生成excel出错：" + ex.Message);
             }
         }
     }

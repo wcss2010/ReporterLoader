@@ -15,7 +15,7 @@ namespace ReporterLoaders.DB.DocEntitys
         /// <summary>
         /// 基础数据字典
         /// </summary>
-        public Dictionary<string, string> BaseInfoDict = new Dictionary<string, string>();
+        public SortedList<string, string> BaseInfoDict = new SortedList<string, string>();
 
         /// <summary>
         /// 教育情况列表
