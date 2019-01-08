@@ -119,6 +119,7 @@ namespace ReporterLoaders
                     //受教育情况
                     rowIndex++;
                     sheet.Cells[rowIndex, 0].PutValue("受教育情况");
+                    rowIndex++;
                     foreach (SchoolInfo shi in pi.SchoolInfoList)
                     {
                         sheet.Cells[rowIndex, 0].PutValue(shi.StartDate);
@@ -133,6 +134,7 @@ namespace ReporterLoaders
                     //主要工作简历
                     rowIndex++;
                     sheet.Cells[rowIndex, 0].PutValue("主要工作简历");
+                    rowIndex++;
                     foreach (ResumeInfo rei in pi.ResumeInfoList)
                     {
                         sheet.Cells[rowIndex, 0].PutValue(rei.StartDate);
@@ -145,6 +147,7 @@ namespace ReporterLoaders
                     //主要科研成绩
                     rowIndex++;
                     sheet.Cells[rowIndex, 0].PutValue("主要科研成绩");
+                    rowIndex++;
                     foreach (ProjectInfo pti in pi.ProjectInfoList)
                     {
                         sheet.Cells[rowIndex, 0].PutValue(pti.Date);
@@ -158,6 +161,7 @@ namespace ReporterLoaders
                     //兼职情况（技术或学术）
                     rowIndex++;
                     sheet.Cells[rowIndex, 0].PutValue("兼职情况（技术或学术）");
+                    rowIndex++;
                     foreach (PartTimeInfo prti in pi.PartTimeInfoList)
                     {
                         sheet.Cells[rowIndex, 0].PutValue(prti.StartDate);
@@ -171,6 +175,7 @@ namespace ReporterLoaders
                     //科技获奖和荣誉情况（省部级以上）
                     rowIndex++;
                     sheet.Cells[rowIndex, 0].PutValue("科技获奖和荣誉情况（省部级以上）");
+                    rowIndex++;
                     foreach (HonorInfo hio in pi.HonorInfoList)
                     {
                         sheet.Cells[rowIndex, 0].PutValue(hio.Date);
@@ -184,6 +189,7 @@ namespace ReporterLoaders
                     //主要著作和专利情况
                     rowIndex++;
                     sheet.Cells[rowIndex, 0].PutValue("主要著作和专利情况");
+                    rowIndex++;
                     foreach (ProductionInfo pui in pi.ProductionInfoList)
                     {
                         sheet.Cells[rowIndex, 0].PutValue(pui.Date);
