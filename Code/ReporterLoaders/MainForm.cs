@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Text;
@@ -202,11 +203,13 @@ namespace ReporterLoaders
 
                     sheet.AutoFitColumns(); //自适应宽
                 }
-                
+
+                book.Worksheets.RemoveAt(0);
                 book.Save(filepath); //保存
                 GC.Collect();
 
                 MessageBox.Show(filepath);
+                Process.Start(filepath);
             }
             catch (Exception ex)
             {
