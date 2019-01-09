@@ -20,6 +20,15 @@ namespace ReporterLoaders.Forms
             tbUser.Text = ConfigHelper.GetAppConfig("user") != null ? ConfigHelper.GetAppConfig("user") : "roott";
             tbPwd.Text = ConfigHelper.GetAppConfig("password") != null ? ConfigHelper.GetAppConfig("password") : "123123";
             tbDBName.Text = ConfigHelper.GetAppConfig("DataBase") != null ? ConfigHelper.GetAppConfig("DataBase") : "ShenBaoDB";
+            tbFileDir.Text = ConfigHelper.GetAppConfig("LoclDirs") != null ? ConfigHelper.GetAppConfig("LoclDirs") : "C:\\FuJianMuLu";
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            if (fbdDialog.ShowDialog() == DialogResult.OK)
+            {
+                tbFileDir.Text = fbdDialog.SelectedPath;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -50,6 +59,12 @@ namespace ReporterLoaders.Forms
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (!Directory.Exists(tbFileDir.Text))
+            {
+                MessageBox.Show("对不起，请选择附件文件路径！");
+                return;
+            }
+
             if (!TestMysqlConnection())
             {
                 MessageBox.Show("对不起，MySQL数据库无法连接！");
@@ -60,6 +75,7 @@ namespace ReporterLoaders.Forms
             ConfigHelper.UpdateAppConfig("user", tbUser.Text);
             ConfigHelper.UpdateAppConfig("password", tbPwd.Text);
             ConfigHelper.UpdateAppConfig("DataBase", tbDBName.Text);
+            ConfigHelper.UpdateAppConfig("LoclDirs", tbFileDir.Text);
 
             DialogResult = DialogResult.OK;
         }

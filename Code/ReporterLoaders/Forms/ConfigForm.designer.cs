@@ -30,12 +30,15 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.tbIP = new System.Windows.Forms.TextBox();
+            this.btnSelect = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tbUser = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbPwd = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbDBName = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbFileDir = new System.Windows.Forms.TextBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.fbdDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -58,6 +61,16 @@
             this.tbIP.Size = new System.Drawing.Size(284, 21);
             this.tbIP.TabIndex = 1;
             this.tbIP.Text = "192.168.8.151";
+            // 
+            // btnSelect
+            // 
+            this.btnSelect.Location = new System.Drawing.Point(391, 125);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(35, 21);
+            this.btnSelect.TabIndex = 2;
+            this.btnSelect.Text = "选";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // label2
             // 
@@ -111,9 +124,26 @@
             this.tbDBName.TabIndex = 1;
             this.tbDBName.Text = "shenbaoDB";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 128);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 12);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "附件文件路径：";
+            // 
+            // tbFileDir
+            // 
+            this.tbFileDir.Location = new System.Drawing.Point(101, 125);
+            this.tbFileDir.Name = "tbFileDir";
+            this.tbFileDir.Size = new System.Drawing.Size(284, 21);
+            this.tbFileDir.TabIndex = 1;
+            this.tbFileDir.Text = "c:\\\\FuJianMuLu";
+            // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(101, 127);
+            this.btnOK.Location = new System.Drawing.Point(101, 159);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(61, 32);
             this.btnOK.TabIndex = 2;
@@ -123,7 +153,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(217, 127);
+            this.btnCancel.Location = new System.Drawing.Point(217, 159);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(61, 32);
             this.btnCancel.TabIndex = 2;
@@ -133,7 +163,7 @@
             // 
             // btnTestConnection
             // 
-            this.btnTestConnection.Location = new System.Drawing.Point(324, 127);
+            this.btnTestConnection.Location = new System.Drawing.Point(324, 159);
             this.btnTestConnection.Name = "btnTestConnection";
             this.btnTestConnection.Size = new System.Drawing.Size(61, 32);
             this.btnTestConnection.TabIndex = 2;
@@ -145,7 +175,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 172);
+            this.ClientSize = new System.Drawing.Size(450, 202);
+            this.Controls.Add(this.tbFileDir);
             this.Controls.Add(this.tbDBName);
             this.Controls.Add(this.tbPwd);
             this.Controls.Add(this.tbUser);
@@ -153,6 +184,8 @@
             this.Controls.Add(this.btnTestConnection);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.btnSelect);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -172,12 +205,15 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbIP;
+        private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbUser;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbPwd;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbDBName;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tbFileDir;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.FolderBrowserDialog fbdDialog;
         private System.Windows.Forms.Button btnCancel;

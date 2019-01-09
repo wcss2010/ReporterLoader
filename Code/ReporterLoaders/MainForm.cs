@@ -19,6 +19,10 @@ namespace ReporterLoaders
 {
     public partial class MainForm : Form
     {
+        public static string DataDir = Path.Combine(Application.StartupPath, "Data");
+
+        public static string FileDir = Path.Combine("C:\\", "HuiZongFiles");
+
         public static MainForm Instance { get; set; }
 
         protected List<PersonInfo> PersonInfoList = new List<PersonInfo>();
@@ -264,6 +268,28 @@ namespace ReporterLoaders
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            string localDirs = ConfigHelper.GetAppConfig("LoclDirs");
+            if (string.IsNullOrEmpty(localDirs))
+            {
+                FileDir = Path.Combine("C:\\", "HuiZongFiles");
+            }
+            else
+            {
+                FileDir = localDirs;
+            }
+
+            try
+            {
+                Directory.CreateDirectory(DataDir);
+            }
+            catch (Exception ex) { }
+
+            try
+            {
+                Directory.CreateDirectory(FileDir);
+            }
+            catch (Exception ex) { }
+
             _worker.WorkerSupportsCancellation = true;
             _worker.DoWork += _worker_DoWork;
         }
