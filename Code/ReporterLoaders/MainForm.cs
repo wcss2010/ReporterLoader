@@ -10,18 +10,28 @@ using System.Windows.Forms;
 using Aspose.Cells;
 using Aspose.Words;
 using Aspose.Words.Tables;
+using Noear.Weed;
 using ReporterLoaders.DB.DocEntitys;
+using ReporterLoaders.DB.MySql;
 using ReporterLoaders.Forms;
 
 namespace ReporterLoaders
 {
     public partial class MainForm : Form
     {
+        public static MainForm Instance { get; set; }
+
         protected List<PersonInfo> PersonInfoList = new List<PersonInfo>();
+
+        private BackgroundWorker _worker = new BackgroundWorker();
+
+        protected ProcessForm ProcessFormObj { get; set; }
 
         public MainForm()
         {
             InitializeComponent();
+
+            Instance = this;
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
@@ -220,7 +230,25 @@ namespace ReporterLoaders
 
         private void btnUploadData_Click(object sender, EventArgs e)
         {
+            if (_worker.IsBusy)
+            {
+                return;
+            }
 
+            if (PersonInfoList.Count == 0)
+            {
+                return;
+            }
+
+            if (MessageBox.Show("真的要上传吗？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                ProcessFormObj = new ProcessForm();
+                ProcessFormObj.Show();
+                ProcessFormObj.BringToFront();
+
+                btnUploadData.Enabled = false;
+                _worker.RunWorkerAsync();
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -232,6 +260,111 @@ namespace ReporterLoaders
         {
             ConfigForm cf = new ConfigForm();
             cf.ShowDialog();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            _worker.WorkerSupportsCancellation = true;
+            _worker.DoWork += _worker_DoWork;
+        }
+
+        private void _worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                foreach (PersonInfo pi in PersonInfoList)
+                {
+                    //窗体关闭则取消
+                    if (ProcessFormObj == null || ProcessFormObj.IsDisposed)
+                    {
+                        break;
+                    }
+
+                    DataItem updateDataObj = null;
+                    DbContext mysqlDBContext = ConnManager.Context;
+                    string personId = Guid.NewGuid().ToString();
+                    string unitId = Guid.NewGuid().ToString();
+
+                    string workUnit = pi.BaseInfoDict["工作单位"];
+                    if (string.IsNullOrEmpty(workUnit))
+                    {
+                        continue;
+                    }
+                    string personName = pi.BaseInfoDict["姓    名"];
+                    if (string.IsNullOrEmpty(personName))
+                    {
+                        continue;
+                    }
+                    string mobilePhone = pi.BaseInfoDict["手    机"];
+                    if (string.IsNullOrEmpty(mobilePhone))
+                    {
+                        continue;
+                    }
+
+                    ////单位与人员信息
+                    string curUnitId = mysqlDBContext.table("d_unit").where("name='" + workUnit + "'").select("id").getValue<string>(string.Empty);
+                    if (string.IsNullOrEmpty(curUnitId))
+                    {
+                        //单位信息
+                        updateDataObj = new DataItem();
+                        updateDataObj.set("id", unitId);
+                        updateDataObj.set("name", workUnit);
+                        updateDataObj.set("sealname", workUnit);
+                        updateDataObj.set("nickname", workUnit);
+                        updateDataObj.set("address", pi.BaseInfoDict["通信地址"]);
+                        updateDataObj.set("linkman", string.Empty);
+                        updateDataObj.set("linknum", string.Empty);
+                        updateDataObj.set("secgrade", string.Empty);
+                        mysqlDBContext.table("d_unit").insert(updateDataObj);
+                    }
+                    else
+                    {
+                        unitId = curUnitId;
+                    }
+                    string curPersonId = mysqlDBContext.table("d_person").where("name='" + personName + "' and mobilephone='" + mobilePhone + "'").select("id").getValue<string>(string.Empty);
+                    if (string.IsNullOrEmpty(curPersonId))
+                    {
+                        updateDataObj = new DataItem();
+                        updateDataObj.set("id", personId);
+                        updateDataObj.set("name", pi.BaseInfoDict["姓    名"]);
+                        updateDataObj.set("post", pi.BaseInfoDict["行政职务"] + "//" + pi.BaseInfoDict["技术职务"]);
+                        updateDataObj.set("specialty", pi.BaseInfoDict["现从事专业"]);
+                        updateDataObj.set("gender", pi.BaseInfoDict["性    别"]);
+                        updateDataObj.set("birthday", pi.BaseInfoDict["出生年月"]);
+                        updateDataObj.set("phone", pi.BaseInfoDict["单位电话"]);
+                        updateDataObj.set("mobilephone", pi.BaseInfoDict["手    机"]);
+                        updateDataObj.set("address", pi.BaseInfoDict["通信地址"]);
+                        updateDataObj.set("unitid", unitId);
+                        mysqlDBContext.table("d_person").insert(updateDataObj);
+                    }
+                    else
+                    {
+                        personId = curPersonId;
+                    }
+                    ////受教育情况
+
+                    ////主要工作简历
+
+                    ////主要科研成绩
+
+                    ////兼职情况（技术或学术）
+
+                    ////科技获奖和荣誉情况（省部级以上）
+
+                    ////主要著作和专利情况
+
+                }
+            }
+            finally
+            {
+                if (IsHandleCreated)
+                {
+                    Invoke(new MethodInvoker(delegate ()
+                    {
+                        btnUploadData.Enabled = true;
+                    }));
+                }
+            }
         }
     }
 }
