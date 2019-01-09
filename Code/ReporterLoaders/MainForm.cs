@@ -366,6 +366,11 @@ namespace ReporterLoaders
                     Invoke(new MethodInvoker(delegate ()
                     {
                         btnUploadData.Enabled = true;
+
+                        if (ProcessFormObj != null)
+                        {
+                            ProcessFormObj.Close();
+                        }
                     }));
                 }
             }
