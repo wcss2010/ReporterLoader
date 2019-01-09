@@ -327,7 +327,7 @@ namespace ReporterLoaders
                         updateDataObj = new DataItem();
                         updateDataObj.set("id", personId);
                         updateDataObj.set("name", pi.BaseInfoDict["姓    名"]);
-                        updateDataObj.set("post", pi.BaseInfoDict["行政职务"] + "//" + pi.BaseInfoDict["技术职务"]);
+                        updateDataObj.set("post", pi.BaseInfoDict["行政职务"] + "//" + pi.BaseInfoDict["技术职称"]);
                         updateDataObj.set("specialty", pi.BaseInfoDict["现从事专业"]);
                         updateDataObj.set("gender", pi.BaseInfoDict["性    别"]);
                         updateDataObj.set("birthday", pi.BaseInfoDict["出生年月"]);
