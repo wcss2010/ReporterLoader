@@ -33,13 +33,12 @@
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.btnOpen = new System.Windows.Forms.ToolStripButton();
-            this.plMain = new System.Windows.Forms.Panel();
             this.btnExportTo = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.btnUploadData = new System.Windows.Forms.ToolStripButton();
+            this.btnConfig = new System.Windows.Forms.ToolStripButton();
+            this.btnExit = new System.Windows.Forms.ToolStripButton();
+            this.plMain = new System.Windows.Forms.Panel();
             this.dgvDetail = new System.Windows.Forms.DataGridView();
-            this.ofdWords = new System.Windows.Forms.OpenFileDialog();
             this.colHead = new System.Windows.Forms.DataGridViewImageColumn();
             this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSex = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +53,7 @@
             this.colSheMiChengDu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTelphone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colButtons = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ofdWords = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.plMain.SuspendLayout();
@@ -81,9 +81,9 @@
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnOpen,
             this.btnExportTo,
-            this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripButton4});
+            this.btnUploadData,
+            this.btnConfig,
+            this.btnExit});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(1080, 91);
@@ -102,16 +102,6 @@
             this.btnOpen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
-            // plMain
-            // 
-            this.plMain.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.plMain.Controls.Add(this.dgvDetail);
-            this.plMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.plMain.Location = new System.Drawing.Point(0, 91);
-            this.plMain.Name = "plMain";
-            this.plMain.Size = new System.Drawing.Size(1080, 441);
-            this.plMain.TabIndex = 2;
-            // 
             // btnExportTo
             // 
             this.btnExportTo.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -124,38 +114,51 @@
             this.btnExportTo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExportTo.Click += new System.EventHandler(this.btnExportTo_Click);
             // 
-            // toolStripButton2
+            // btnUploadData
             // 
-            this.toolStripButton2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(68, 88);
-            this.toolStripButton2.Text = "Test";
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnUploadData.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnUploadData.Image = ((System.Drawing.Image)(resources.GetObject("btnUploadData.Image")));
+            this.btnUploadData.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnUploadData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUploadData.Name = "btnUploadData";
+            this.btnUploadData.Size = new System.Drawing.Size(69, 88);
+            this.btnUploadData.Text = "数据上传";
+            this.btnUploadData.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnUploadData.Click += new System.EventHandler(this.btnUploadData_Click);
             // 
-            // toolStripButton3
+            // btnConfig
             // 
-            this.toolStripButton3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(68, 88);
-            this.toolStripButton3.Text = "Test";
-            this.toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnConfig.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnConfig.Image = ((System.Drawing.Image)(resources.GetObject("btnConfig.Image")));
+            this.btnConfig.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(69, 88);
+            this.btnConfig.Text = "系统配置";
+            this.btnConfig.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
-            // toolStripButton4
+            // btnExit
             // 
-            this.toolStripButton4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(68, 88);
-            this.toolStripButton4.Text = "Test";
-            this.toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExit.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
+            this.btnExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnExit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(68, 88);
+            this.btnExit.Text = "退出";
+            this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // plMain
+            // 
+            this.plMain.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.plMain.Controls.Add(this.dgvDetail);
+            this.plMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plMain.Location = new System.Drawing.Point(0, 91);
+            this.plMain.Name = "plMain";
+            this.plMain.Size = new System.Drawing.Size(1080, 441);
+            this.plMain.TabIndex = 2;
             // 
             // dgvDetail
             // 
@@ -186,10 +189,6 @@
             this.dgvDetail.Size = new System.Drawing.Size(1080, 441);
             this.dgvDetail.TabIndex = 0;
             this.dgvDetail.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetail_CellContentClick);
-            // 
-            // ofdWords
-            // 
-            this.ofdWords.Filter = "*.docx|*.docx|*.doc|*.doc";
             // 
             // colHead
             // 
@@ -305,6 +304,10 @@
             this.colButtons.UseColumnTextForButtonValue = true;
             this.colButtons.Width = 70;
             // 
+            // ofdWords
+            // 
+            this.ofdWords.Filter = "*.docx|*.docx|*.doc|*.doc";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -334,9 +337,9 @@
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.Panel plMain;
         private System.Windows.Forms.ToolStripButton btnOpen;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton btnExit;
+        private System.Windows.Forms.ToolStripButton btnConfig;
+        private System.Windows.Forms.ToolStripButton btnUploadData;
         private System.Windows.Forms.ToolStripButton btnExportTo;
         private System.Windows.Forms.DataGridView dgvDetail;
         private System.Windows.Forms.OpenFileDialog ofdWords;

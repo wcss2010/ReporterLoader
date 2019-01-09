@@ -11,6 +11,7 @@ using Aspose.Cells;
 using Aspose.Words;
 using Aspose.Words.Tables;
 using ReporterLoaders.DB.DocEntitys;
+using ReporterLoaders.Forms;
 
 namespace ReporterLoaders
 {
@@ -215,6 +216,22 @@ namespace ReporterLoaders
             {
                 MessageBox.Show("生成excel出错：" + ex.Message);
             }
+        }
+
+        private void btnUploadData_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnConfig_Click(object sender, EventArgs e)
+        {
+            ConfigForm cf = new ConfigForm();
+            cf.ShowDialog();
         }
     }
 }
