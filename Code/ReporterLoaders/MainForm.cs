@@ -355,6 +355,10 @@ namespace ReporterLoaders
 
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("上传出错！Ex:" + ex.ToString());
+            }
             finally
             {
                 if (IsHandleCreated)
