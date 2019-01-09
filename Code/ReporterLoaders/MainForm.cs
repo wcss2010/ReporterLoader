@@ -320,6 +320,17 @@ namespace ReporterLoaders
                     else
                     {
                         unitId = curUnitId;
+
+                        updateDataObj = new DataItem();
+                        updateDataObj.set("id", unitId);
+                        updateDataObj.set("name", workUnit);
+                        updateDataObj.set("sealname", workUnit);
+                        updateDataObj.set("nickname", workUnit);
+                        updateDataObj.set("address", pi.BaseInfoDict["通信地址"]);
+                        updateDataObj.set("linkman", string.Empty);
+                        updateDataObj.set("linknum", string.Empty);
+                        updateDataObj.set("secgrade", string.Empty);
+                        mysqlDBContext.table("d_unit").where("id='" + unitId + "'").update(updateDataObj);
                     }
                     string curPersonId = mysqlDBContext.table("d_person").where("name='" + personName + "' and mobilephone='" + mobilePhone + "'").select("id").getValue<string>(string.Empty);
                     if (string.IsNullOrEmpty(curPersonId))
@@ -348,6 +359,27 @@ namespace ReporterLoaders
                     else
                     {
                         personId = curPersonId;
+
+                        DateTime birthdayDate = DateTime.Now;
+                        try
+                        {
+                            string[] birth = pi.BaseInfoDict["出生年月"].Split(new string[] { "." }, StringSplitOptions.None);
+                            birthdayDate = new DateTime(int.Parse(birth[0]), int.Parse(birth[1]), 1);
+                        }
+                        catch (Exception ex) { }
+
+                        updateDataObj = new DataItem();
+                        updateDataObj.set("id", personId);
+                        updateDataObj.set("name", pi.BaseInfoDict["姓    名"]);
+                        updateDataObj.set("post", pi.BaseInfoDict["行政职务"].Trim() + "/" + pi.BaseInfoDict["技术职称"].Trim());
+                        updateDataObj.set("specialty", pi.BaseInfoDict["现从事专业"]);
+                        updateDataObj.set("gender", pi.BaseInfoDict["性    别"]);
+                        updateDataObj.set("birthday", birthdayDate);
+                        updateDataObj.set("phone", pi.BaseInfoDict["单位电话"]);
+                        updateDataObj.set("mobilephone", pi.BaseInfoDict["手    机"]);
+                        updateDataObj.set("address", pi.BaseInfoDict["通信地址"]);
+                        updateDataObj.set("unitid", unitId);
+                        mysqlDBContext.table("d_person").where("id='" + personId + "'").update(updateDataObj);
                     }
                     ////受教育情况
 
