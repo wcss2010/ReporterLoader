@@ -327,6 +327,8 @@ namespace ReporterLoaders
                         continue;
                     }
 
+                    string picFileName = personName + "_" + mobilePhone + ".png";
+
                     ////单位与人员信息
                     string curUnitId = mysqlDBContext.table("d_unit").where("name='" + workUnit + "'").select("id").getValue<string>(string.Empty);
                     if (string.IsNullOrEmpty(curUnitId))
@@ -407,18 +409,110 @@ namespace ReporterLoaders
                         updateDataObj.set("unitid", unitId);
                         mysqlDBContext.table("d_person").where("id='" + personId + "'").update(updateDataObj);
                     }
+
+                    //清理数据
+                    mysqlDBContext.table("d_personex").where("id = '" + personId + "'").delete();
+                    mysqlDBContext.table("d_person_jianli").where("id = '" + personId + "'").delete();
+                    mysqlDBContext.table("d_person_jianzhiqingkuang").where("id = '" + personId + "'").delete();
+                    mysqlDBContext.table("d_person_keyanchengji").where("id = '" + personId + "'").delete();
+                    mysqlDBContext.table("d_person_rongyuqingkuang").where("id = '" + personId + "'").delete();
+                    mysqlDBContext.table("d_person_schooldetail").where("id = '" + personId + "'").delete();
+                    mysqlDBContext.table("d_person_zhuanliqingkuang").where("id = '" + personId + "'").delete();
+
+                    updateDataObj = new DataItem();
+                    updateDataObj.set("id", personId);
+                    updateDataObj.set("benkezhuanye", pi.BaseInfoDict["本科专业"]);
+                    updateDataObj.set("chuanzhen", pi.BaseInfoDict["传    真"]);
+                    updateDataObj.set("email", pi.BaseInfoDict["电子邮箱"]);
+                    updateDataObj.set("minzu", pi.BaseInfoDict["民    族"]);
+                    updateDataObj.set("shemichengdu", pi.BaseInfoDict["涉密程度"]);
+                    updateDataObj.set("shifoudingjuguowai", pi.BaseInfoDict["是否具有外国国籍或港澳台居民身份，是否拥有境外永久居留权（绿卡），如有，请申明"]);
+                    updateDataObj.set("suoshubumen", pi.BaseInfoDict["所属部门"]);
+                    updateDataObj.set("suozaichengshi", pi.BaseInfoDict["所在省市"]);
+                    updateDataObj.set("youbian", pi.BaseInfoDict["邮政编码"]);
+                    updateDataObj.set("zhengzhimianmao", pi.BaseInfoDict["政治面貌"]);
+                    updateDataObj.set("zuigaoxuewei", pi.BaseInfoDict["最高学位"]);
+                    updateDataObj.set("zhaopian", picFileName);
+
+                    mysqlDBContext.table("d_personex").insert(updateDataObj);
+
                     ////受教育情况
+                    foreach (SchoolInfo sii in pi.SchoolInfoList)
+                    {
+                        updateDataObj = new DataItem();
+                        updateDataObj.set("id", personId);
+                        updateDataObj.set("starttime", sii.StartDate);
+                        updateDataObj.set("endtime", sii.EndDate);
+                        updateDataObj.set("school", sii.SchoolName);
+                        updateDataObj.set("kemu", sii.Subject);
+                        updateDataObj.set("xueli", sii.License);
+
+                        mysqlDBContext.table("d_person_schooldetail").insert(updateDataObj);
+                    }
 
                     ////主要工作简历
+                    foreach (ResumeInfo rii in pi.ResumeInfoList)
+                    {
+                        updateDataObj = new DataItem();
+                        updateDataObj.set("id", personId);
+                        updateDataObj.set("starttime", rii.StartDate);
+                        updateDataObj.set("endtime", rii.EndDate);
+                        updateDataObj.set("unitandjob", rii.WorkUnitAndJob);
+
+                        mysqlDBContext.table("d_person_jianli").insert(updateDataObj);
+                    }
 
                     ////主要科研成绩
+                    foreach (ProjectInfo pii in pi.ProjectInfoList)
+                    {
+                        updateDataObj = new DataItem();
+                        updateDataObj.set("id", personId);
+                        updateDataObj.set("time", pii.Date);
+                        updateDataObj.set("name", pii.Name);
+                        updateDataObj.set("source", pii.Source);
+                        updateDataObj.set("job", pii.Job);
+
+                        mysqlDBContext.table("d_person_keyanchengji").insert(updateDataObj);
+                    }
 
                     ////兼职情况（技术或学术）
+                    foreach (PartTimeInfo pti in pi.PartTimeInfoList)
+                    {
+                        updateDataObj = new DataItem();
+                        updateDataObj.set("id", personId);
+                        updateDataObj.set("starttime", pti.StartDate);
+                        updateDataObj.set("endtime", pti.EndDate);
+                        updateDataObj.set("detail", pti.PartTimeContent);
+                        updateDataObj.set("job", pti.Job);
+
+                        mysqlDBContext.table("d_person_jianzhiqingkuang").insert(updateDataObj);
+                    }
 
                     ////科技获奖和荣誉情况（省部级以上）
+                    foreach (HonorInfo hii in pi.HonorInfoList)
+                    {
+                        updateDataObj = new DataItem();
+                        updateDataObj.set("id", personId);
+                        updateDataObj.set("time", hii.Date);
+                        updateDataObj.set("name", hii.Name);
+                        updateDataObj.set("level", hii.Level);
+                        updateDataObj.set("order", hii.Order);
+
+                        mysqlDBContext.table("d_person_rongyuqingkuang").insert(updateDataObj);
+                    }
 
                     ////主要著作和专利情况
+                    foreach (ProductionInfo pni in pi.ProductionInfoList)
+                    {
+                        updateDataObj = new DataItem();
+                        updateDataObj.set("id", personId);
+                        updateDataObj.set("time", pni.Date);
+                        updateDataObj.set("name", pni.Name);
+                        updateDataObj.set("printerandprivateno", pni.PrinterAndLicenseNo);
+                        updateDataObj.set("order", pni.Order);
 
+                        mysqlDBContext.table("d_person_zhuanliqingkuang").insert(updateDataObj);
+                    }
                 }
             }
             catch (Exception ex)
