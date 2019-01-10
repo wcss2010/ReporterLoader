@@ -513,6 +513,12 @@ namespace ReporterLoaders
 
                         mysqlDBContext.table("d_person_zhuanliqingkuang").insert(updateDataObj);
                     }
+
+                    //保存头像
+                    if (pi.HeadImage != null)
+                    {
+                        pi.HeadImage.Save(Path.Combine(FileDir, picFileName));
+                    }
                 }
             }
             catch (Exception ex)
