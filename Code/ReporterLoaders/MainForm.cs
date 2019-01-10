@@ -529,7 +529,7 @@ namespace ReporterLoaders
                         updateDataObj.set("time", hii.Date);
                         updateDataObj.set("name", hii.Name);
                         updateDataObj.set("level", hii.Level);
-                        updateDataObj.set("order", hii.Order);
+                        updateDataObj.set("`order`", hii.Order);
 
                         mysqlDBContext.table("d_person_rongyuqingkuang").insert(updateDataObj);
                     }
@@ -543,7 +543,7 @@ namespace ReporterLoaders
                         updateDataObj.set("time", pni.Date);
                         updateDataObj.set("name", pni.Name);
                         updateDataObj.set("printerandprivateno", pni.PrinterAndLicenseNo);
-                        updateDataObj.set("order", pni.Order);
+                        updateDataObj.set("`order`", pni.Order);
 
                         mysqlDBContext.table("d_person_zhuanliqingkuang").insert(updateDataObj);
                     }
