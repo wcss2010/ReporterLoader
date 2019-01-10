@@ -23,6 +23,17 @@ namespace ReporterLoaders.Forms
             set { pbrUploads.Value = value; }
         }
         
+        public int MaxProgressValue
+        {
+            get { return pbrUploads.Maximum; }
+            set
+            {
+                pbrUploads.Maximum = value;
+                pbrUploads.Minimum = 0;
+                pbrUploads.Value = 0;
+            }
+        }
+
         public ProcessForm()
         {
             InitializeComponent();

@@ -298,8 +298,32 @@ namespace ReporterLoaders
         {
             try
             {
+                if (IsHandleCreated)
+                {
+                    Invoke(new MethodInvoker(delegate()
+                    {
+                        if (ProcessFormObj != null)
+                        {
+                            ProcessFormObj.MaxProgressValue = PersonInfoList.Count;
+                        }
+                    }));
+                }
+
+                int progress = 0;
                 foreach (PersonInfo pi in PersonInfoList)
                 {
+                    progress++;
+                    if (IsHandleCreated)
+                    {
+                        Invoke(new MethodInvoker(delegate ()
+                        {
+                            if (ProcessFormObj != null)
+                            {
+                                ProcessFormObj.ProgressValue = progress;
+                            }
+                        }));
+                    }
+
                     //窗体关闭则取消
                     if (ProcessFormObj == null || ProcessFormObj.IsDisposed)
                     {
