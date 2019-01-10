@@ -436,12 +436,12 @@ namespace ReporterLoaders
 
                     //清理数据
                     mysqlDBContext.table("d_personex").where("id = '" + personId + "'").delete();
-                    mysqlDBContext.table("d_person_jianli").where("id = '" + personId + "'").delete();
-                    mysqlDBContext.table("d_person_jianzhiqingkuang").where("id = '" + personId + "'").delete();
-                    mysqlDBContext.table("d_person_keyanchengji").where("id = '" + personId + "'").delete();
-                    mysqlDBContext.table("d_person_rongyuqingkuang").where("id = '" + personId + "'").delete();
-                    mysqlDBContext.table("d_person_schooldetail").where("id = '" + personId + "'").delete();
-                    mysqlDBContext.table("d_person_zhuanliqingkuang").where("id = '" + personId + "'").delete();
+                    mysqlDBContext.table("d_person_jianli").where("personid = '" + personId + "'").delete();
+                    mysqlDBContext.table("d_person_jianzhiqingkuang").where("personid = '" + personId + "'").delete();
+                    mysqlDBContext.table("d_person_keyanchengji").where("personid = '" + personId + "'").delete();
+                    mysqlDBContext.table("d_person_rongyuqingkuang").where("personid = '" + personId + "'").delete();
+                    mysqlDBContext.table("d_person_schooldetail").where("personid = '" + personId + "'").delete();
+                    mysqlDBContext.table("d_person_zhuanliqingkuang").where("personid = '" + personId + "'").delete();
 
                     updateDataObj = new DataItem();
                     updateDataObj.set("id", personId);
@@ -464,7 +464,8 @@ namespace ReporterLoaders
                     foreach (SchoolInfo sii in pi.SchoolInfoList)
                     {
                         updateDataObj = new DataItem();
-                        updateDataObj.set("id", personId);
+                        updateDataObj.set("id", Guid.NewGuid().ToString());
+                        updateDataObj.set("personid", personId);
                         updateDataObj.set("starttime", sii.StartDate);
                         updateDataObj.set("endtime", sii.EndDate);
                         updateDataObj.set("school", sii.SchoolName);
@@ -478,7 +479,8 @@ namespace ReporterLoaders
                     foreach (ResumeInfo rii in pi.ResumeInfoList)
                     {
                         updateDataObj = new DataItem();
-                        updateDataObj.set("id", personId);
+                        updateDataObj.set("id", Guid.NewGuid().ToString());
+                        updateDataObj.set("personid", personId);
                         updateDataObj.set("starttime", rii.StartDate);
                         updateDataObj.set("endtime", rii.EndDate);
                         updateDataObj.set("unitandjob", rii.WorkUnitAndJob);
@@ -490,7 +492,8 @@ namespace ReporterLoaders
                     foreach (ProjectInfo pii in pi.ProjectInfoList)
                     {
                         updateDataObj = new DataItem();
-                        updateDataObj.set("id", personId);
+                        updateDataObj.set("id", Guid.NewGuid().ToString());
+                        updateDataObj.set("personid", personId);
                         updateDataObj.set("time", pii.Date);
                         updateDataObj.set("name", pii.Name);
                         updateDataObj.set("source", pii.Source);
@@ -503,7 +506,8 @@ namespace ReporterLoaders
                     foreach (PartTimeInfo pti in pi.PartTimeInfoList)
                     {
                         updateDataObj = new DataItem();
-                        updateDataObj.set("id", personId);
+                        updateDataObj.set("id", Guid.NewGuid().ToString());
+                        updateDataObj.set("personid", personId);
                         updateDataObj.set("starttime", pti.StartDate);
                         updateDataObj.set("endtime", pti.EndDate);
                         updateDataObj.set("detail", pti.PartTimeContent);
@@ -516,7 +520,8 @@ namespace ReporterLoaders
                     foreach (HonorInfo hii in pi.HonorInfoList)
                     {
                         updateDataObj = new DataItem();
-                        updateDataObj.set("id", personId);
+                        updateDataObj.set("id", Guid.NewGuid().ToString());
+                        updateDataObj.set("personid", personId);
                         updateDataObj.set("time", hii.Date);
                         updateDataObj.set("name", hii.Name);
                         updateDataObj.set("level", hii.Level);
@@ -529,7 +534,8 @@ namespace ReporterLoaders
                     foreach (ProductionInfo pni in pi.ProductionInfoList)
                     {
                         updateDataObj = new DataItem();
-                        updateDataObj.set("id", personId);
+                        updateDataObj.set("id", Guid.NewGuid().ToString());
+                        updateDataObj.set("personid", personId);
                         updateDataObj.set("time", pni.Date);
                         updateDataObj.set("name", pni.Name);
                         updateDataObj.set("printerandprivateno", pni.PrinterAndLicenseNo);
