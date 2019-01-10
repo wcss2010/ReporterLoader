@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -551,7 +552,7 @@ namespace ReporterLoaders
                     //保存头像
                     if (pi.HeadImage != null)
                     {
-                        pi.HeadImage.Save(Path.Combine(FileDir, picFileName));
+                        pi.HeadImage.Save(Path.Combine(FileDir, picFileName), ImageFormat.Png);
                     }
                 }
             }
