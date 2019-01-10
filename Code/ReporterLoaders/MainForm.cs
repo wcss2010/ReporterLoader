@@ -263,7 +263,11 @@ namespace ReporterLoaders
         private void btnConfig_Click(object sender, EventArgs e)
         {
             ConfigForm cf = new ConfigForm();
-            cf.ShowDialog();
+            if (cf.ShowDialog() == DialogResult.OK)
+            {
+                Process.Start(Application.ExecutablePath);
+                Application.Exit();
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
