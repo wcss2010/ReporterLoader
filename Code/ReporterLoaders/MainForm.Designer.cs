@@ -97,8 +97,8 @@
             this.btnOpen.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(68, 88);
-            this.btnOpen.Text = "载入";
+            this.btnOpen.Size = new System.Drawing.Size(69, 88);
+            this.btnOpen.Text = "批量载入";
             this.btnOpen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
@@ -307,6 +307,7 @@
             // ofdWords
             // 
             this.ofdWords.Filter = "*.docx|*.docx|*.doc|*.doc";
+            this.ofdWords.Multiselect = true;
             // 
             // MainForm
             // 

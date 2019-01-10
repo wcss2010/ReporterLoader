@@ -45,14 +45,18 @@ namespace ReporterLoaders
             {
                 try
                 {
-                    PersonInfo bi = PersonInfo.GetPersonInfoObj(ofdWords.FileName);
-
-                    if (bi.BaseInfoDict.Count == 0 || bi.SchoolInfoList.Count == 0)
+                    foreach (string ss in ofdWords.FileNames)
                     {
-                        return;
+                        PersonInfo bi = PersonInfo.GetPersonInfoObj(ss);
+
+                        if (bi.BaseInfoDict.Count == 0 || bi.SchoolInfoList.Count == 0)
+                        {
+                            continue;
+                        }
+
+                        PersonInfoList.Add(bi);
                     }
 
-                    PersonInfoList.Add(bi);
                     UpdatePersonInfoList();
                 }
                 catch (Exception ex)
