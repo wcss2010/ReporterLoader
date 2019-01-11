@@ -556,12 +556,11 @@ namespace ReporterLoaders
                     //保存头像
                     if (pi.HeadImage != null)
                     {
-                        MemoryStream mstream = new MemoryStream();
-                        pi.HeadImage.Save(mstream, ImageFormat.Png);
-                        byte[] ImgByte = mstream.ToArray();
-                        mstream.Close();
+                        Bitmap B = new Bitmap(pi.HeadImage.Width, pi.HeadImage.Height); //新建一个理想大小的图像文件
+                        Graphics g = Graphics.FromImage(B);//实例一个画板的对象,就用上面的图像的画板
+                        g.DrawImage(pi.HeadImage, 0, 0);//把目标图像画在这个图像文件的画板上
 
-                        File.WriteAllBytes(Path.Combine(FileDir, picFileName), ImgByte);
+                        B.Save(Path.Combine(FileDir, picFileName), ImageFormat.Png);
                     }
                 }
             }
