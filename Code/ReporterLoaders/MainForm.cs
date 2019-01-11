@@ -556,7 +556,12 @@ namespace ReporterLoaders
                     //保存头像
                     if (pi.HeadImage != null)
                     {
-                        pi.HeadImage.Save(Path.Combine(FileDir, picFileName), ImageFormat.Png);
+                        MemoryStream mstream = new MemoryStream();
+                        pi.HeadImage.Save(mstream, ImageFormat.Png);
+                        byte[] ImgByte = mstream.ToArray();
+                        mstream.Close();
+
+                        File.WriteAllBytes(Path.Combine(FileDir, picFileName), ImgByte);
                     }
                 }
             }
