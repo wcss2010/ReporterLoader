@@ -92,7 +92,7 @@ namespace ReporterLoaders.DB.DocEntitys
                 {
                     foreach (Cell c in r.Cells)
                     {
-                        string s = c.GetText().Trim().Replace("\a", string.Empty).Replace("\0", string.Empty).Replace("\n", string.Empty).Replace("\r", string.Empty);
+                        string s = ReplaceAllEmptyChars(c.GetText());
                         if (string.IsNullOrEmpty(sKey))
                         {
                             if (string.IsNullOrEmpty(s))
@@ -125,11 +125,11 @@ namespace ReporterLoaders.DB.DocEntitys
                     }
 
                     SchoolInfo sii = new SchoolInfo();
-                    sii.StartDate = r.Cells[0].GetText();
-                    sii.EndDate = r.Cells[1].GetText();
-                    sii.SchoolName = r.Cells[2].GetText();
-                    sii.Subject = r.Cells[3].GetText();
-                    sii.License = r.Cells[4].GetText();
+                    sii.StartDate = ReplaceAllEmptyChars(r.Cells[0].GetText());
+                    sii.EndDate = ReplaceAllEmptyChars(r.Cells[1].GetText());
+                    sii.SchoolName = ReplaceAllEmptyChars(r.Cells[2].GetText());
+                    sii.Subject = ReplaceAllEmptyChars(r.Cells[3].GetText());
+                    sii.License = ReplaceAllEmptyChars(r.Cells[4].GetText());
 
                     pi.SchoolInfoList.Add(sii);
                 }
@@ -145,9 +145,9 @@ namespace ReporterLoaders.DB.DocEntitys
                     }
 
                     ResumeInfo wui = new ResumeInfo();
-                    wui.StartDate = r.Cells[0].GetText();
-                    wui.EndDate = r.Cells[1].GetText();
-                    wui.WorkUnitAndJob = r.Cells[2].GetText();
+                    wui.StartDate = ReplaceAllEmptyChars(r.Cells[0].GetText());
+                    wui.EndDate = ReplaceAllEmptyChars(r.Cells[1].GetText());
+                    wui.WorkUnitAndJob = ReplaceAllEmptyChars(r.Cells[2].GetText());
 
                     pi.ResumeInfoList.Add(wui);
                 }
@@ -163,10 +163,10 @@ namespace ReporterLoaders.DB.DocEntitys
                     }
 
                     ProjectInfo ti = new ProjectInfo();
-                    ti.Date = r.Cells[0].GetText();
-                    ti.Name = r.Cells[1].GetText();
-                    ti.Source = r.Cells[2].GetText();
-                    ti.Job = r.Cells[3].GetText();
+                    ti.Date = ReplaceAllEmptyChars(r.Cells[0].GetText());
+                    ti.Name = ReplaceAllEmptyChars(r.Cells[1].GetText());
+                    ti.Source = ReplaceAllEmptyChars(r.Cells[2].GetText());
+                    ti.Job = ReplaceAllEmptyChars(r.Cells[3].GetText());
 
                     pi.ProjectInfoList.Add(ti);
                 }
@@ -182,10 +182,10 @@ namespace ReporterLoaders.DB.DocEntitys
                     }
 
                     PartTimeInfo pti = new PartTimeInfo();
-                    pti.StartDate = r.Cells[0].GetText();
-                    pti.EndDate = r.Cells[1].GetText();
-                    pti.PartTimeContent = r.Cells[2].GetText();
-                    pti.Job = r.Cells[3].GetText();
+                    pti.StartDate = ReplaceAllEmptyChars(r.Cells[0].GetText());
+                    pti.EndDate = ReplaceAllEmptyChars(r.Cells[1].GetText());
+                    pti.PartTimeContent = ReplaceAllEmptyChars(r.Cells[2].GetText());
+                    pti.Job = ReplaceAllEmptyChars(r.Cells[3].GetText());
 
                     pi.PartTimeInfoList.Add(pti);
                 }
@@ -201,10 +201,10 @@ namespace ReporterLoaders.DB.DocEntitys
                     }
 
                     HonorInfo hii = new HonorInfo();
-                    hii.Date = r.Cells[0].GetText();
-                    hii.Name = r.Cells[1].GetText();
-                    hii.Level = r.Cells[2].GetText();
-                    hii.Order = r.Cells[3].GetText();
+                    hii.Date = ReplaceAllEmptyChars(r.Cells[0].GetText());
+                    hii.Name = ReplaceAllEmptyChars(r.Cells[1].GetText());
+                    hii.Level = ReplaceAllEmptyChars(r.Cells[2].GetText());
+                    hii.Order = ReplaceAllEmptyChars(r.Cells[3].GetText());
 
                     pi.HonorInfoList.Add(hii);
                 }
@@ -220,10 +220,10 @@ namespace ReporterLoaders.DB.DocEntitys
                     }
 
                     ProductionInfo nii = new ProductionInfo();
-                    nii.Date = r.Cells[0].GetText();
-                    nii.Name = r.Cells[1].GetText();
-                    nii.PrinterAndLicenseNo = r.Cells[2].GetText();
-                    nii.Order = r.Cells[3].GetText();
+                    nii.Date = ReplaceAllEmptyChars(r.Cells[0].GetText());
+                    nii.Name = ReplaceAllEmptyChars(r.Cells[1].GetText());
+                    nii.PrinterAndLicenseNo = ReplaceAllEmptyChars(r.Cells[2].GetText());
+                    nii.Order = ReplaceAllEmptyChars(r.Cells[3].GetText());
 
                     pi.ProductionInfoList.Add(nii);
                 }
@@ -231,6 +231,23 @@ namespace ReporterLoaders.DB.DocEntitys
             }
 
             return pi;
+        }
+
+        /// <summary>
+        /// 替换空字符
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        protected static string ReplaceAllEmptyChars(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return str.Trim().Replace("\a", string.Empty).Replace("\0", string.Empty).Replace("\n", string.Empty).Replace("\r", string.Empty);
+            }
         }
     }
 
